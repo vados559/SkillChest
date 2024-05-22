@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данные пользователя</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('main') }}"><img src="{{ url_for('static', filename='icon/chest.svg') }}" alt="Главная"></a></li>
+                <li><a href="#">Профиль</a></li>
+                <li><a href="#">Настройки</a></li>
+                <li><a href="#">Выйти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="profile">
+        <div class="container">
+            <h1>Данные пользователя</h1>
+            <div class="user-info">
+                <p><strong>Имя:</strong> John Doe</p>
+                <p><strong>Email:</strong> {{ user }}</p>
+                <p><strong>Телефон:</strong> +1234567890</p>
+                <p><strong>Страна:</strong> Страна</p>
+                <!-- Добавьте другие данные пользователя по вашему усмотрению -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Курсы онлайн</p>
+        </div>
+    </footer>
+</body>
+</html>
