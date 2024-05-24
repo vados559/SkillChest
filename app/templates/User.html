@@ -30,8 +30,11 @@
                             <li class="nav-item nav-profile"><a href="{{ url_for('UserProfile') }}"><img src="{{ url_for('static', filename='icon/user.png') }}" alt="Профиль" width="50" height="50"></a></li>
                             <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('logout') }}">Выйти</a></li>
                             {% if current_user.Role == "Преподаватель" %}
-                                <li class="nav-item"><a class="btn btn-primary" href="#">Добавить курс</a></li>
+                                <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('AddCourse') }}">Добавить курс</a></li>
                             {% endif %}
+                        {% else %}
+                            <li class="nav-item"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignin">Авторизация</button></li>
+                            <li class="nav-item"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRegister">Регистрация</button></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -51,6 +54,13 @@
             </div>
         </div>
     </section>
+
+    <!-- <section>
+        <div>
+            <h1>Ваши курсы:</h1>
+
+        </div>
+    </section> -->
 
     <footer class="footer">
         <div class="container">

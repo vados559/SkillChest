@@ -82,7 +82,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="{{ url_for('main') }}"><img src="{{ url_for('static', filename='icon/chest.svg') }}" alt="Главная" width="80" height="80"></a>
-            <a class="navbar-brand" href="#">Каталог курсов</a>
+            <a class="navbar-brand" href="{{ url_for('AllCourses') }}">Каталог курсов</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -98,7 +98,7 @@
                         <li class="nav-item nav-profile"><a href="{{ url_for('UserProfile') }}"><img src="{{ url_for('static', filename='icon/user.png') }}" alt="Профиль" width="50" height="50"></a></li>
                         <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('logout') }}">Выйти</a></li>
                         {% if current_user.Role == "Преподаватель" %}
-                            <li class="nav-item"><a class="btn btn-primary" href="#">Добавить курс</a></li>
+                            <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('AddCourse') }}">Добавить курс</a></li>
                         {% endif %}
                     {% else %}
                         <li class="nav-item"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignin">Авторизация</button></li>
@@ -202,7 +202,7 @@
     <div class="container">
         <h1>Платформа онлайн-курсов</h1>
         <p>Выбирайте и обучайтесь с нами!</p>
-        <a href="#" class="btn btn-primary">Начать обучение</a>
+        <a href="{{ url_for('AllCourses') }}" class="btn btn-primary">Начать обучение</a>
     </div>
 </section>
 
