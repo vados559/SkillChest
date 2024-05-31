@@ -6,8 +6,6 @@ from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 app.config.from_object(Config)
-# app.config['SECRET_KEY'] = 'vad748'
-# csrf = CSRFProtect(app)
 
 db = SQLAlchemy(app)
 

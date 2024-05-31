@@ -14,7 +14,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="{{ url_for('main') }}"><img src="{{ url_for('static', filename='icon/chest.svg') }}" alt="Главная" width="80" height="80"></a>
-                <a class="navbar-brand" href="#">Каталог курсов</a>
+                <a class="navbar-brand" href="{{ url_for('AllCourses') }}">Каталог курсов</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -26,15 +26,10 @@
                                 <button class="btn btn-outline-light" type="submit"><img src="{{ url_for('static', filename='icon/search-icon.png') }}" alt="Искать"></button>
                             </form>
                         </li>
-                        {% if current_user.is_authenticated %}
-                            <li class="nav-item nav-profile"><a href="{{ url_for('UserProfile') }}"><img src="{{ url_for('static', filename='icon/user.png') }}" alt="Профиль" width="50" height="50"></a></li>
-                            <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('logout') }}">Выйти</a></li>
-                            {% if current_user.Role == "Преподаватель" %}
-                                <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('AddCourse') }}">Добавить курс</a></li>
-                            {% endif %}
-                        {% else %}
-                            <li class="nav-item"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignin">Авторизация</button></li>
-                            <li class="nav-item"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRegister">Регистрация</button></li>
+                        <li class="nav-item nav-profile"><a href="{{ url_for('UserProfile') }}"><img src="{{ url_for('static', filename='icon/user.png') }}" alt="Профиль" width="50" height="50"></a></li>
+                        <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('logout') }}">Выйти</a></li>
+                        {% if current_user.Role == "Преподаватель" %}
+                            <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('AddCourse') }}">Добавить курс</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -50,22 +45,29 @@
                 <p><strong>Эл. Почта:</strong> {{ UserEmail }}</p>
                 <p><strong>id</strong> {{ UserId }}</p>
                 <p><strong>Род деятельности:</strong> {{ UserRole }}</p>
-                <!-- Добавьте другие данные пользователя по вашему усмотрению -->
             </div>
         </div>
     </section>
 
-    <!-- <section>
-        <div>
-            <h1>Ваши курсы:</h1>
-
+    <div class="container">
+        <h2 class="mt-5">Мои курсы</h2>
+        <div class="row">
+            {% for course in user_courses %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="{{ url_for('CourseDetail', CourseId=course.id) }}" class="text-decoration-none text-dark">
+                            <img src="{{ url_for('static', filename=course.Photo_Path) }}" class="card-img-top" alt="{{ course.Name_Course }}">
+                            <div class="card-body">
+                                <hr>
+                                <h5 class="card-title">{{ course.Name_Course }}</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    </section> -->
+    </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2023 Курсы онлайн</p>
-        </div>
-    </footer>
+    {% include 'footer.html' %}
 </body>
 </html>

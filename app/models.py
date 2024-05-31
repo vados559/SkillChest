@@ -1,5 +1,6 @@
 from app import db, app
 from flask_login import UserMixin
+import json
 
 class Users(UserMixin, db.Model):
     app.app_context().push()
@@ -7,7 +8,15 @@ class Users(UserMixin, db.Model):
     Email = db.Column(db.String(128), nullable=False)
     Password = db.Column(db.String(128), nullable=False)
     Role = db.Column(db.String(128), nullable=False)
-    CourseList = db.Column(db.Integer)
+    CourseList = db.Column(db.String, nullable=False, default="[]")
+
+    @property
+    def Course_List(self):
+        return json.loads(self.CourseList) # гетер
+
+    @Course_List.setter
+    def Course_List(self, value):
+        self.CourseList = json.dumps(value) # сетер
 
 class Courses(db.Model):
     app.app_context().push()

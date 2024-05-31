@@ -14,7 +14,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="{{ url_for('main') }}"><img src="{{ url_for('static', filename='icon/chest.svg') }}" alt="Главная" width="80" height="80"></a>
-            <a class="navbar-brand" href="#">Каталог курсов</a>
+            <a class="navbar-brand" href="{{ url_for('AllCourses') }}">Каталог курсов</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,13 +26,9 @@
                             <button class="btn btn-outline-light" type="submit"><img src="{{ url_for('static', filename='icon/search-icon.png') }}" alt="Искать"></button>
                         </form>
                     </li>
-                    {% if current_user.is_authenticated %}
-                        <li class="nav-item nav-profile"><a href="{{ url_for('UserProfile') }}"><img src="{{ url_for('static', filename='icon/user.png') }}" alt="Профиль" width="50" height="50"></a></li>
-                        <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('logout') }}">Выйти</a></li>
-                    {% else %}
-                        <li class="nav-item"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSignin">Авторизация</button></li>
-                        <li class="nav-item"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRegister">Регистрация</button></li>
-                    {% endif %}
+                    <li class="nav-item nav-profile"><a href="{{ url_for('UserProfile') }}"><img src="{{ url_for('static', filename='icon/user.png') }}" alt="Профиль" width="50" height="50"></a></li>
+                    <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('AddCourse') }}" style="font-size: 1.0rem;">Добавить курс</a></li>
+                    <li class="nav-item"><a class="btn btn-primary" href="{{ url_for('logout') }}">Выйти</a></li>
                 </ul>
             </div>
         </nav>
@@ -56,18 +52,6 @@
         <button type="submit" class="btn btn-primary w-100">{{ Form.Submit() }}</button>
     </form>
 </div>
-
-<footer class="footer mt-auto py-3 bg-dark text-white">
-    <div class="container">
-        <nav class="d-flex justify-content-center">
-            <ul class="list-unstyled d-flex mb-3">
-                <li class="me-3"><a href="#" class="text-white">О нас</a></li>
-                <li><a href="#" class="text-white">Контакты</a></li>
-            </ul>
-        </nav>
-        <p class="text-center">&copy; 2023 Курсы онлайн</p>
-    </div>
-</footer>
-
+{% include 'footer.html' %}
 </body>
 </html>
